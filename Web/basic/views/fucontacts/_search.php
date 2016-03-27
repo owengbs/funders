@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'name')->label('输入名称') ?>
 
     <?php //<?= $form->field($model, 'score') ?>
 

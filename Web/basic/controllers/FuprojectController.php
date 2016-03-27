@@ -61,16 +61,13 @@ class FuprojectController extends Controller
     {
         $model = new FuProject();
         $searchModel = new FuProjectSearch();
-        $ret = $searchModel->getCompanyIndustryNames();
-        $companynames = $ret[0];
-        $industrynames = $ret[1];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'companynames' => $companynames,
-                'industrynames' => $industrynames,
+                'companynames' => \app\models\FuCompanySearch::getIdNames(),
+                'industrynames' => \app\models\FuIndustrySearch::getIdNames(),
             ]);
         }
     }
@@ -84,17 +81,13 @@ class FuprojectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $searchModel = new FuProjectSearch();
-        $ret = $searchModel->getCompanyIndustryNames();
-        $companynames = $ret[0];
-        $industrynames = $ret[1];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'companynames' => $companynames,
-                'industrynames' => $industrynames,
+                'companynames' => \app\models\FuCompanySearch::getIdNames(),
+                'industrynames' => \app\models\FuIndustrySearch::getIdNames(),
             ]);
         }
     }

@@ -67,4 +67,16 @@ class FuInsititutionSearch extends FuInsititution
 
         return $dataProvider;
     }
+    /**
+     * @return array('id1'=>'name1', ... )
+     */
+    public static function getIdNames()
+    {
+        $output = array();
+        foreach(FuInsititution::find()->all() as $key=>$value)
+        {
+            $output[$value->id] = $value->name;
+        }
+        return $output;
+    }    
 }

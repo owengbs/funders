@@ -67,6 +67,9 @@ class FucaseController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'companynames' => \app\models\FuCompanySearch::getIdNames(),
+                'insititutionnames' => \app\models\FuInsititutionSearch::getIdNames(),
+                'phasenames' => \app\models\FuPhaseSearch::getIdNames(),
             ]);
         }
     }
@@ -86,6 +89,9 @@ class FucaseController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'companynames' => \app\models\FuCompanySearch::getIdNames(),
+                'insititutionnames' => \app\models\FuInsititutionSearch::getIdNames(),
+                'phasenames' => \app\models\FuPhaseSearch::getIdNames(),           
             ]);
         }
     }

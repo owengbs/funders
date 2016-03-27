@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'companyId')->textInput() ?>
+    <?= $form->field($model, 'companyId')->dropDownList($companynames) ?>
 
-    <?= $form->field($model, 'phaseId')->textInput() ?>
+    <?= $form->field($model, 'phaseId')->dropDownList($phasenames) ?>
 
     <?= $form->field($model, 'amount')->textInput() ?>
 
-    <?= $form->field($model, 'institutionId')->textInput() ?>
+    <?= $form->field($model, 'insititutionId')->dropDownList($insititutionnames) ?>
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 

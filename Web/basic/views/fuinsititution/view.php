@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Fu Insititutions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="fu-insititution-view">
 
@@ -27,14 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
+        'attributes' => array_merge([
             'id',
             'name',
             'describe',
             'news',
             'lastmodified',
-            'author',
-        ],
+            'author',],
+            $cases),
     ]) ?>
 
 </div>

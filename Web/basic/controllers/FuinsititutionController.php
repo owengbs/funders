@@ -48,8 +48,15 @@ class FuinsititutionController extends Controller
      */
     public function actionView($id)
     {
+        $cases = array();
+        $model = $this->findModel($id);
+        foreach($model->fuCases as $key=>$value)
+        {
+            $cases[] = ['label'=>'案例'.$value->id, 'value'=>$value->fuCompany->name.' '.$value->fuCompany->fuIndustry->name];
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'cases' => $cases,
         ]);
     }
 

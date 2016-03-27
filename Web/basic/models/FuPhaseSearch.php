@@ -5,13 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\FuProject;
-use app\models\FuCompany;
-use app\models\FuIndustry;
+use app\models\FuPhase;
+
 /**
- * FuProjectSearch represents the model behind the search form about `app\models\FuProject`.
+ * FuPhaseSearch represents the model behind the search form about `app\models\FuPhase`.
  */
-class FuProjectSearch extends FuProject
+class FuPhaseSearch extends FuPhase
 {
     /**
      * @inheritdoc
@@ -19,8 +18,8 @@ class FuProjectSearch extends FuProject
     public function rules()
     {
         return [
-            [['id', 'companyId', 'industryId', 'amount', 'estimatevalue'], 'integer'],
-            [['name', 'meettime', 'signtime', 'news', 'lastmodified', 'author'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -32,6 +31,7 @@ class FuProjectSearch extends FuProject
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
+
     /**
      * Creates data provider instance with search query applied
      *
@@ -41,9 +41,8 @@ class FuProjectSearch extends FuProject
      */
     public function search($params)
     {
-        $query = FuProject::find()
-                ->joinWith('fuCompany');
- 
+        $query = FuPhase::find();
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -58,19 +57,22 @@ class FuProjectSearch extends FuProject
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'companyId' => $this->companyId,
-            'industryId' => $this->industryId,
-            'meettime' => $this->meettime,
-            'signtime' => $this->signtime,
-            'amount' => $this->amount,
-            'estimatevalue' => $this->estimatevalue,
-            'lastmodified' => $this->lastmodified,
         ]);
 
-        $query->andFilterWhere(['like', 'fu_project.name', $this->name])
-            ->andFilterWhere(['like', 'news', $this->news])
-            ->andFilterWhere(['like', 'author', $this->author]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
+    /**
+     * @return array('id1'=>'name1', ... )
+     */
+    public static function getIdNames()
+    {
+        $output = array();
+        foreach(FuPhase::find()->all() as $key=>$value)
+        {
+            $output[$value->id] = $value->name;
+        }
+        return $output;
+    }    
 }

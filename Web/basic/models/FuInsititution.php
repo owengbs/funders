@@ -50,4 +50,8 @@ class FuInsititution extends \yii\db\ActiveRecord
             'author' => 'Author',
         ];
     }
+    public function getFuCases()
+    {
+        return $this->hasMany(FuCase::className(), ['insititutionId'=>'id']);
+    }
 }

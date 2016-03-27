@@ -11,7 +11,7 @@ use Yii;
  * @property integer $companyId
  * @property integer $phaseId
  * @property integer $amount
- * @property integer $institutionId
+ * @property integer $insititutionId
  * @property string $comment
  * @property string $date
  * @property string $lastmodified
@@ -33,8 +33,8 @@ class FuCase extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['companyId', 'phaseId', 'amount', 'institutionId', 'comment', 'author'], 'required'],
-            [['companyId', 'phaseId', 'amount', 'institutionId'], 'integer'],
+            [['companyId', 'phaseId', 'amount', 'insititutionId', 'comment', 'author'], 'required'],
+            [['companyId', 'phaseId', 'amount', 'insititutionId'], 'integer'],
             [['date', 'lastmodified'], 'safe'],
             [['comment', 'author'], 'string', 'max' => 128]
         ];
@@ -50,11 +50,25 @@ class FuCase extends \yii\db\ActiveRecord
             'companyId' => 'Company ID',
             'phaseId' => 'Phase ID',
             'amount' => 'Amount',
-            'institutionId' => 'Institution ID',
+            'insititutionId' => 'Insititution ID',
             'comment' => 'Comment',
             'date' => 'Date',
             'lastmodified' => 'Lastmodified',
             'author' => 'Author',
         ];
     }
+    
+    public function getFuCompany()
+    {
+        return $this->hasOne(FuCompany::className(), ['id'=>'companyId']);
+    }
+    public function getFuInsititution()
+    {
+        return $this->hasOne(FuInsititution::className(), ['id'=>'insititutionId']);
+    }
+    public function getFuPhase()
+    {
+        return $this->hasOne(FuPhase::className(), ['id'=>'phaseId']);
+    }
+
 }

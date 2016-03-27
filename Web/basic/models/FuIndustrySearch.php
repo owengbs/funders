@@ -64,4 +64,16 @@ class FuIndustrySearch extends FuIndustry
 
         return $dataProvider;
     }
+    /**
+     * @return array('id1'=>'name1', ... )
+     */
+    public static function getIdNames()
+    {
+        $output = array();
+        foreach(FuIndustry::find()->all() as $key=>$value)
+        {
+            $output[$value->id] = $value->name;
+        }
+        return $output;
+    }    
 }

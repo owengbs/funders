@@ -24,12 +24,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'companyId',
-            'phaseId',
-            'amount',
-            'institutionId',
+            [
+                'value'=>'id',
+            ],
+            [
+                'label'=>'公司',
+                'attribute'=>'fuCompany.name',
+            ],
+            [
+                'label'=>'轮次',
+                'attribute'=>'fuPhase.name',
+            ],
+            [
+                'label' => '融资金额',
+                'value'=>'amount',
+            ],
+            [
+                'label'=>'投资机构',
+                'attribute'=>'fuInsititution.name',
+            ],
             // 'comment',
             // 'date',
             // 'lastmodified',

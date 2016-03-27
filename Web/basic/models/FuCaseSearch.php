@@ -18,7 +18,7 @@ class FuCaseSearch extends FuCase
     public function rules()
     {
         return [
-            [['id', 'companyId', 'phaseId', 'amount', 'institutionId'], 'integer'],
+            [['id', 'companyId', 'phaseId', 'amount', 'insititutionId'], 'integer'],
             [['comment', 'date', 'lastmodified', 'author'], 'safe'],
         ];
     }
@@ -60,7 +60,7 @@ class FuCaseSearch extends FuCase
             'companyId' => $this->companyId,
             'phaseId' => $this->phaseId,
             'amount' => $this->amount,
-            'institutionId' => $this->institutionId,
+            'insititutionId' => $this->insititutionId,
             'date' => $this->date,
             'lastmodified' => $this->lastmodified,
         ]);
