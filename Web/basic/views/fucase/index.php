@@ -29,19 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label'=>'公司',
-                'attribute'=>'fuCompany.name',
+                'attribute'=>'fuCompany',
+                'value'=>'fuCompany.name',
             ],
             [
                 'label'=>'轮次',
-                'attribute'=>'fuPhase.name',
+                'attribute'=>'fuPhase',
+                'value'=>'fuPhase.name',
             ],
             [
                 'label' => '融资金额',
-                'value'=>'amount',
+                'attribute'=>'amountmsg',
             ],
             [
                 'label'=>'投资机构',
-                'attribute'=>'fuInsititution.name',
+                'attribute'=>'fuInsititution',
+                'value'=>'fuInsititution.name',
             ],
             // 'comment',
             // 'date',

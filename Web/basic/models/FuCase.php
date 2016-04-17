@@ -36,7 +36,7 @@ class FuCase extends \yii\db\ActiveRecord
             [['companyId', 'phaseId', 'amount', 'insititutionId', 'comment', 'author'], 'required'],
             [['companyId', 'phaseId', 'amount', 'insititutionId'], 'integer'],
             [['date', 'lastmodified'], 'safe'],
-            [['comment', 'author'], 'string', 'max' => 128]
+            [['comment', 'amountmsg', 'author'], 'string', 'max' => 128]
         ];
     }
 
@@ -50,6 +50,7 @@ class FuCase extends \yii\db\ActiveRecord
             'companyId' => 'Company ID',
             'phaseId' => 'Phase ID',
             'amount' => 'Amount',
+            'amountmsg'=>'Amountmsg',
             'insititutionId' => 'Insititution ID',
             'comment' => 'Comment',
             'date' => 'Date',
@@ -68,7 +69,7 @@ class FuCase extends \yii\db\ActiveRecord
     }
     public function getFuPhase()
     {
-        return $this->hasOne(FuPhase::className(), ['id'=>'phaseId']);
+        return $this->hasOne(FuPhase::className(), ['phaseId'=>'phaseId']);
     }
 
 }

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\FuInsititutionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Fu Insititutions';
+$this->title = '投资机构';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="fu-insititution-index">

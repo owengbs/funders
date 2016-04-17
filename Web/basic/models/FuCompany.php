@@ -47,6 +47,6 @@ class FuCompany extends \yii\db\ActiveRecord
     
     public function getFuIndustry()
     {
-        return $this->hasOne(FuIndustry::className(),['id'=>'industryId']);
+        return $this->hasOne(FuIndustry::className(),['pid'=>'industryId']);
     }
 }
