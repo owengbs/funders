@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
+use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\FuContactsSearch */
@@ -13,24 +13,45 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="fu-contacts-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+   
     <p>
         <?= Html::a('创建投资人', ['create'], ['class' => 'btn btn-success']) ?>
-    
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
-
-        <?= $form->field($uploadmodel, 'txtFile')->fileInput()->label('导入投资人') ?>
-
-        <button class='btn btn-success'>Submit</button>
-    
-    <?php ActiveForm::end() ?>
     </p>
 
 
-    <?= ListView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => '_item',
+        'filterModel' => $searchModel,
+        'columns' => [
+
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'name',
+            
+//            'company1',
+            'position1',
+            'email1',
+            // 'author',
+            [
+                'content' => function($model, $key, $index, $column) {
+                if($model->fuInsititution != null)
+                    return Html::a($model->fuInsititution->name,  ['fuinsititution/view','id'=>$model->fuInsititution->id]);
+                else
+                    return Html::encode($model->company1);
+                    }
+            ],
+
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                        return  Html::a('Update', $url, ['target'=>'_blank']);
+                },]
+            ],
+        ],
+//        'itemOptions' => ['class' => 'item'],
+//        'itemView' => '_item',
 //        'itemView' => function ($model, $key, $index, $widget) {
 //            return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
 //        },

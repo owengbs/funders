@@ -6,6 +6,8 @@ use Yii;
 use app\models\FuContacts;
 use app\models\FuContactsSearch;
 use app\models\UploadContacts;
+use app\models\FuInsititution;
+use app\models\FuInsititutionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -89,6 +91,8 @@ class FucontactsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $searchModel = new FuInsititutionSearch();
+        $instinames = array_values($searchModel->getIdNames());
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -96,6 +100,7 @@ class FucontactsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'instinames'=>$instinames,
             ]);
         }
     }

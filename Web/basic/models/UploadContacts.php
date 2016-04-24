@@ -21,7 +21,7 @@ class UploadContacts extends Model
     public function rules()
     {
         return [
-            [['txtFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'txt,csv'],
+            [['txtFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'txt, csv'],
         ];
     }
     

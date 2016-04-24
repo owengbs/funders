@@ -64,7 +64,7 @@ class FuContactsSearch extends FuContacts
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'fu_contacts.name', $this->name])
             ->andFilterWhere(['like', 'score', $this->score])
             ->andFilterWhere(['like', 'en_name', $this->en_name])
             ->andFilterWhere(['like', 'phone1', $this->phone1])

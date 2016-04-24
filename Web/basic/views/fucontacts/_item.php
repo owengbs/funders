@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 ?>
 <div class="post">
-    <h2><?= Html::a(Html::encode($model->name), ['view', 'id' => $model->id]) ?></h2>
+    <h2><?= Html::a(Html::encode($model->name), ['view', 'id' => $model->id],['target'=>'_blank']) ?></h2>
     <h4>
         <?php if($model->fuInsititution != null): ?>
         <?=Html::a($model->fuInsititution->name,  ['fuinsititution/view','id'=>$model->fuInsititution->id])?>

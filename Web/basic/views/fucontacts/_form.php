@@ -12,6 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'score')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', ], ['prompt' => '']) ?>
@@ -52,9 +53,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'industryId')->textInput() ?>
 
-    <?= $form->field($model, 'company1')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'company1')->widget(\yii\jui\AutoComplete::classname(), [
+    'clientOptions' => [
+        'source' => $instinames,
+        ], 
+    ])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'company2')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'company2')->widget(\yii\jui\AutoComplete::classname(), [
+    'clientOptions' => [
+        'source' => $instinames,
+        ], 
+    ])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'department1')->textInput(['maxlength' => true]) ?>
 

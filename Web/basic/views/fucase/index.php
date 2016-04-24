@@ -46,6 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'fuInsititution',
                 'value'=>'fuInsititution.name',
             ],
+            [
+                'label'=>'领域',
+                'attribute'=>'fuCompany',
+                'value'=>'fuCompany.fuIndustry.name',
+            ],
             // 'comment',
             // 'date',
             // 'lastmodified',

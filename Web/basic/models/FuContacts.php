@@ -58,7 +58,7 @@ class FuContacts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email1', 'industryId'], 'required'],
+            [['name', 'email1'], 'required'],
             [['score', 'weixin'], 'string'],
             [['industryId', 'groupId'], 'integer'],
             [['createtime', 'lastmodified'], 'safe'],

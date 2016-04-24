@@ -15,6 +15,7 @@ class FuCaseSearch extends FuCase
     public $fuPhase;
     public $fuInsititution;
     public $fuCompany;
+    public $fuIndustry;
     /**
      * @inheritdoc
      */
@@ -46,7 +47,7 @@ class FuCaseSearch extends FuCase
     public function search($params)
     {
         $query = FuCase::find()
-                ->joinWith(['fuPhase','fuInsititution', 'fuCompany']);
+                ->joinWith(['fuPhase','fuInsititution', 'fuCompany', 'fuCompany.fuIndustry']);
                       
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -92,7 +93,8 @@ class FuCaseSearch extends FuCase
             ->andFilterWhere(['like', 'amountmsg', $this->amountmsg])
             ->andFilterWhere(['like', 'fu_phase.name', $this->fuPhase])
             ->andFilterWhere(['like', 'fu_insititution.name', $this->fuInsititution])
-            ->andFilterWhere(['like', 'fu_company.name', $this->fuCompany]);
+            ->andFilterWhere(['like', 'fu_company.name', $this->fuCompany])
+            ->andFilterWhere(['like', 'fu_industry.name', $this->fuIndustry]);
         return $dataProvider;
     }
 }
