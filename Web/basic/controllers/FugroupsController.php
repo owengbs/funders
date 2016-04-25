@@ -3,59 +3,49 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\FuContacts;
-use app\models\FuContactsSearch;
-use app\models\UploadContacts;
-use app\models\FuInsititution;
 use app\models\FuGroups;
-use app\models\FuInsititutionSearch;
+use app\models\FuGroupsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+
 /**
- * FucontactsController implements the CRUD actions for FuContacts model.
+ * FugroupsController implements the CRUD actions for FuGroups model.
  */
-class FucontactsController extends Controller
+class FugroupsController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all FuContacts models.
+     * Lists all FuGroups models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new FuContactsSearch();
+        $searchModel = new FuGroupsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $uploadmodel = new UploadContacts();
 
-        if (Yii::$app->request->isPost) {
-            $uploadmodel->txtFile = UploadedFile::getInstance($uploadmodel, 'txtFile');
-            if ($uploadmodel->upload()) {
-                // file is uploaded successfully
-//                return;
-            }
-        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'uploadmodel' => $uploadmodel,
         ]);
     }
 
     /**
-     * Displays a single FuContacts model.
+     * Displays a single FuGroups model.
      * @param integer $id
      * @return mixed
      */
@@ -67,13 +57,13 @@ class FucontactsController extends Controller
     }
 
     /**
-     * Creates a new FuContacts model.
+     * Creates a new FuGroups model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new FuContacts();
+        $model = new FuGroups();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -85,17 +75,13 @@ class FucontactsController extends Controller
     }
 
     /**
-     * Updates an existing FuContacts model.
+     * Updates an existing FuGroups model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-        $searchModel = new FuInsititutionSearch();
-        $instinames = array_values($searchModel->getIdNames());
-        $groupsearchModel = new \app\models\FuGroupsSearch();
-        $groupnames = $groupsearchModel->getIdNames();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -103,14 +89,12 @@ class FucontactsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'instinames'=>$instinames,
-                'groupnames'=>$groupnames,
             ]);
         }
     }
 
     /**
-     * Deletes an existing FuContacts model.
+     * Deletes an existing FuGroups model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -123,15 +107,15 @@ class FucontactsController extends Controller
     }
 
     /**
-     * Finds the FuContacts model based on its primary key value.
+     * Finds the FuGroups model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return FuContacts the loaded model
+     * @return FuGroups the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = FuContacts::findOne($id)) !== null) {
+        if (($model = FuGroups::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

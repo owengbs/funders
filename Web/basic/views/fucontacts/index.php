@@ -28,10 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            
 //            'company1',
             'position1',
             'email1',
+            [
+                'label'=>'分组',
+                'attribute' => 'fuGroups',
+                'value'=>'fuGroups.name',
+            ],
             // 'author',
             [
                 'content' => function($model, $key, $index, $column) {

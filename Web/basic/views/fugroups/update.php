@@ -3,21 +3,19 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\FuContacts */
+/* @var $model app\models\FuGroups */
 
-$this->title = 'Update Fu Contacts: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Fu Contacts', 'url' => ['index']];
+$this->title = 'Update Fu Groups: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Fu Groups', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="fu-contacts-update">
+<div class="fu-groups-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-        'instinames'=>$instinames,
-        'groupnames'=>$groupnames,
     ]) ?>
 
 </div>

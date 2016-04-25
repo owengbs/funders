@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\FuInsititution;
+use app\models\FuGroups;
 
 /**
- * FuInsititutionSearch represents the model behind the search form about `app\models\FuInsititution`.
+ * FuGroupsSearch represents the model behind the search form about `app\models\FuGroups`.
  */
-class FuInsititutionSearch extends FuInsititution
+class FuGroupsSearch extends FuGroups
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class FuInsititutionSearch extends FuInsititution
     {
         return [
             [['id'], 'integer'],
-            [['name', 'describe', 'news', 'lastmodified', 'author'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,9 @@ class FuInsititutionSearch extends FuInsititution
      */
     public function search($params)
     {
-        $query = FuInsititution::find();
+        $query = FuGroups::find();
+
+        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,25 +57,23 @@ class FuInsititutionSearch extends FuInsititution
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'lastmodified' => $this->lastmodified,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'describe', $this->describe])
-            ->andFilterWhere(['like', 'news', $this->news])
-            ->andFilterWhere(['like', 'author', $this->author]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
-    /**
+    
+        /**
      * @return array('id1'=>'name1', ... )
      */
     public static function getIdNames()
     {
         $output = array();
-        foreach(FuInsititution::find()->all() as $key=>$value)
+        foreach(FuGroups::find()->all() as $key=>$value)
         {
             $output[$value->id] = $value->name;
         }

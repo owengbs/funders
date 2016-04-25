@@ -115,4 +115,8 @@ class FuContacts extends \yii\db\ActiveRecord
     {
         return $this->hasOne(FuInsititution::className(),['name'=>'company1']);
     }
+    public function getFuGroups()
+    {
+        return $this->hasOne(FuGroups::className(),['id'=>'groupId']);
+    }
 }

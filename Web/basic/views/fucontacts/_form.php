@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'score')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'groupId')->dropDownList($groupnames, ['prompt' => '']) ?>
 
     <?= $form->field($model, 'phone1')->textInput(['maxlength' => true]) ?>
 
@@ -81,7 +83,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fax')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'groupId')->textInput() ?>
+    
 
     <?= $form->field($model, 'createtime')->textInput() ?>
 

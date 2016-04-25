@@ -12,6 +12,7 @@ use app\models\FuContacts;
  */
 class FuContactsSearch extends FuContacts
 {
+    public $fuGroups;
     /**
      * @inheritdoc
      */
@@ -20,6 +21,7 @@ class FuContactsSearch extends FuContacts
         return [
             [['name', 'score', 'en_name', 'phone1', 'phone2', 'telphone1', 'telphone2', 'telphone3', 'email1', 'email2', 'im', 'weixin', 'school', 'birthdate', 'comment', 'position1', 'position2', 'position3', 'position4', 'company1', 'company2', 'department1', 'department2', 'affiliatedcompany1', 'affiliatedcompany2', 'address1', 'address2', 'website', 'fax', 'createtime', 'lastmodified'], 'safe'],
             [['industryId', 'groupId', 'id'], 'integer'],
+            [['fuGroups'],'safe'],
         ];
     }
 
@@ -42,7 +44,7 @@ class FuContactsSearch extends FuContacts
     public function search($params)
     {
         $query = FuContacts::find()
-                ->joinWith('fuInsititution');
+                ->joinWith(['fuInsititution', 'fuGroups']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -92,6 +94,7 @@ class FuContactsSearch extends FuContacts
             ->andFilterWhere(['like', 'address1', $this->address1])
             ->andFilterWhere(['like', 'address2', $this->address2])
             ->andFilterWhere(['like', 'website', $this->website])
+            ->andFilterWhere(['like', 'fu_groups.name', $this->fuGroups])
             ->andFilterWhere(['like', 'fax', $this->fax]);
 
         return $dataProvider;
