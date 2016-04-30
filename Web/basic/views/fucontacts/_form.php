@@ -83,8 +83,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fax')->textInput(['maxlength' => true]) ?>
 
-    
-
     <?= $form->field($model, 'createtime')->textInput() ?>
 
     <?= $form->field($model, 'lastmodified')->textInput() ?>

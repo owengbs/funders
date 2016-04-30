@@ -38,12 +38,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             // 'author',
             [
+                'label'=>'机构',
+                'attribute'=>'company1',
                 'content' => function($model, $key, $index, $column) {
                 if($model->fuInsititution != null)
                     return Html::a($model->fuInsititution->name,  ['fuinsititution/view','id'=>$model->fuInsititution->id]);
                 else
                     return Html::encode($model->company1);
-                    }
+                }
             ],
 
             [

@@ -12,6 +12,7 @@ use app\models\FuContacts;
  */
 class FuContactsSearch extends FuContacts
 {
+    public $fuInsititution;
     public $fuGroups;
     /**
      * @inheritdoc
@@ -95,6 +96,7 @@ class FuContactsSearch extends FuContacts
             ->andFilterWhere(['like', 'address2', $this->address2])
             ->andFilterWhere(['like', 'website', $this->website])
             ->andFilterWhere(['like', 'fu_groups.name', $this->fuGroups])
+            ->andFilterWhere(['like', 'fu_insititution.name', $this->fuInsititution])
             ->andFilterWhere(['like', 'fax', $this->fax]);
 
         return $dataProvider;
